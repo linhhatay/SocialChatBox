@@ -12,6 +12,11 @@
 <body>
     <div class="wrapper">
         <?php
+
+        use App\Session;
+
+        $session = Session::getInstance();
+
         require_once $viewPath;
         ?>
     </div>

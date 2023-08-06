@@ -2,7 +2,8 @@
   "require": {
     "ramsey/uuid": "^4.7",
     "psr/container": "^2.0",
-    "vlucas/phpdotenv": "^5.5"
+    "vlucas/phpdotenv": "^5.5",
+    "phpmailer/phpmailer": "^6.8"
   },
   "autoload": {
     "psr-4": {

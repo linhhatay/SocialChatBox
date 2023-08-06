@@ -24,21 +24,25 @@ define('_WEB_ROOT', $web_root);
 define('STORAGE_PATH', __DIR__ . '/storage');
 define('VIEW_PATH', __DIR__ . '/views');
 define('RESOURCES_PATH', __DIR__ . '/resources');
-
 $router
     ->get(
         _WEB_ROOT,
         [HomeController::class, 'index']
     );
 
-// Route login
 $router
     ->get(
-        _WEB_ROOT . '/tai-khoan',
-        [AuthController::class, 'index']
+        _WEB_ROOT . '/login',
+        [AuthController::class, 'showLogin']
     )->post(
-        _WEB_ROOT . '/tai-khoan',
+        _WEB_ROOT . '/login',
         [AuthController::class, 'login']
+    )->get(
+        _WEB_ROOT . '/signup',
+        [AuthController::class, 'showSignup']
+    )->post(
+        _WEB_ROOT . '/signup',
+        [AuthController::class, 'signup']
     );
 
 // echo '<pre>';

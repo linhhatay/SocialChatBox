@@ -54,6 +54,11 @@ class Validator
                     $this->addError($field, 'The ' . $field . ' field must be at least ' . $params[0] . ' characters.');
                 }
                 break;
+            case 'email':
+                if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                    $this->addError($field, "The $field must be a valid email address.");
+                }
+                break;
 
                 // Add more validation rules as needed.
 

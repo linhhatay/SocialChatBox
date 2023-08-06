@@ -4,18 +4,24 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
+use App\Response;
+use App\Session;
 use App\View;
 
 class HomeController
 {
 
-    public function __construct()
+    public function __construct(private Response $response)
     {
     }
     // GET /photos/{photo}/comments
     public function index(): View
     {
-        return View::make('login');
+        $session = Session::getInstance();
+        if ($session->get('unique_id')) {
+            return $this->response->redirect(_WEB_ROOT);
+        }
+        return View::make('signup');
     }
 
     // GET /photos/{photo}/comments/create
