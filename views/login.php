@@ -1,6 +1,6 @@
 <section class="form login">
     <header>Realtime Chat App</header>
-    <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
+    <form action="<?= _WEB_ROOT . '/login' ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
         <?php if (isset($errors)) : ?>
             <?php foreach ($errors as $field => $fieldErrors) : ?>
                 <?php foreach ($fieldErrors as $error) : ?>

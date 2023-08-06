@@ -97,6 +97,31 @@ class AuthController
 
     public function login()
     {
-        echo "Login...";
+
+        $data = $this->request->all();
+        $email = $this->request->input('email');
+        $password = $this->request->input('password');
+
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ];
+
+        $validator = new Validator($data, $rules);
+        $session = Session::getInstance();
+        $session->flashInput($data);
+
+        if ($validator->validate()) {
+            try {
+                $user =  $this->userModel->login($email, $password);
+                return View::make('index', ['user' => $user]);
+            } catch (\Exception $e) {
+                $errors = ['login' => [$e->getMessage()]];
+                return View::make('login', ['errors' => $errors]);
+            }
+        } else {
+            $errors = $validator->errors();
+            return View::make('login', ['errors' =>  $errors]);
+        }
     }
 }

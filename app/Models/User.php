@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Model;
+use App\Session;
 
 class User extends Model
 {
@@ -24,7 +25,17 @@ class User extends Model
         }
     }
 
-    public function login($username, $password)
+    public function login($email, $password)
     {
+        $stmt = $this->query("SELECT * FROM users WHERE email = ?", [$email]);
+        $user = $stmt->fetch();
+
+        if (!$user || !password_verify($password, $user['password'])) {
+            throw new \Exception('Địa chỉ email không xác định. Kiểm tra lại hoặc thử tên người dùng của bạn.');
+        }
+
+        $session = Session::getInstance();
+        $session->set('unique_id', $user['unique_id']);
+        return $user;
     }
 }

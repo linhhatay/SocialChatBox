@@ -28,6 +28,9 @@ $router
     ->get(
         _WEB_ROOT,
         [HomeController::class, 'index']
+    )->get(
+        _WEB_ROOT . '/home',
+        [HomeController::class, 'home']
     );
 
 $router
