@@ -51,4 +51,19 @@ class User extends Model
 
         return false;
     }
+
+    public function getAll()
+    {
+        $stmt = $this->query("SELECT * FROM users ");
+        $users = $stmt->fetchAll();
+
+        return $users;
+    }
+
+    public function search(string $keyword)
+    {
+        $stmt = $this->query("SELECT * FROM users WHERE fname LIKE '%$keyword%' OR lname LIKE '%$keyword%'");
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 }

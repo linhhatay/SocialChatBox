@@ -3,6 +3,7 @@
 use App\App;
 use App\Config;
 use App\Container;
+use App\Controllers\UserController;
 use App\Controllers\AuthController;
 use App\Router;
 use App\Controllers\HomeController;
@@ -24,6 +25,7 @@ define('_WEB_ROOT', $web_root);
 define('STORAGE_PATH', __DIR__ . '/storage');
 define('VIEW_PATH', __DIR__ . '/views');
 define('RESOURCES_PATH', __DIR__ . '/resources');
+
 $router
     ->get(
         _WEB_ROOT,
@@ -31,6 +33,13 @@ $router
     )->get(
         _WEB_ROOT . '/home',
         [HomeController::class, 'home']
+    )->get(
+        _WEB_ROOT . '/users',
+        [UserController::class, 'getAll']
+    )
+    ->post(
+        _WEB_ROOT . '/search',
+        [UserController::class, 'searchUser']
     );
 
 $router
