@@ -13,7 +13,7 @@
                 <p><?= $user['status'] ?></p>
             </div>
         </div>
-        <a href="php/logout.php?logout_id" class="logout">Logout</a>
+        <a href="<?= _WEB_ROOT . '/logout' ?>" class="logout">Logout</a>
     </header>
     <div class="search">
         <span class="text">Select an user to start chat</span>

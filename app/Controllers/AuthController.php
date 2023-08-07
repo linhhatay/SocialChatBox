@@ -124,4 +124,19 @@ class AuthController
             return View::make('login', ['errors' =>  $errors]);
         }
     }
+
+    public function logout()
+    {
+        $session = Session::getInstance();
+        $uniqueId = $session->get('unique_id');
+
+        $isLogout = $this->userModel->logout($uniqueId);
+
+        if ($isLogout) {
+            $session->destroy();
+            return $this->response->redirect(_WEB_ROOT . '/login');
+        }
+
+        return $this->response->redirect(_WEB_ROOT);
+    }
 }

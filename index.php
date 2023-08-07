@@ -46,6 +46,9 @@ $router
     )->post(
         _WEB_ROOT . '/signup',
         [AuthController::class, 'signup']
+    )->get(
+        _WEB_ROOT . '/logout',
+        [AuthController::class, 'logout']
     );
 
 // echo '<pre>';

@@ -38,4 +38,17 @@ class User extends Model
         $session->set('unique_id', $user['unique_id']);
         return $user;
     }
+
+    public function logout($uniqueId)
+    {
+        $status = 'Offline now';
+
+        $stmt = $this->query("UPDATE users SET status = ? WHERE unique_id = ?", [$status, $uniqueId]);
+
+        if ($stmt) {
+            return true;
+        }
+
+        return false;
+    }
 }
