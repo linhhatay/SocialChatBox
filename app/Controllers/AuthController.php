@@ -114,7 +114,10 @@ class AuthController
         if ($validator->validate()) {
             try {
                 $user =  $this->userModel->login($email, $password);
-                return View::make('index', ['user' => $user]);
+                $session->set('user', $user);
+                $this->response->redirect(_WEB_ROOT . '/home');
+
+                // return View::make('index', ['user' => $user]);
             } catch (\Exception $e) {
                 $errors = ['login' => [$e->getMessage()]];
                 return View::make('login', ['errors' => $errors]);

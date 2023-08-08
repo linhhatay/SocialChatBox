@@ -5,6 +5,7 @@ use App\Config;
 use App\Container;
 use App\Controllers\UserController;
 use App\Controllers\AuthController;
+use App\Controllers\ChatController;
 use App\Router;
 use App\Controllers\HomeController;
 
@@ -36,10 +37,18 @@ $router
     )->get(
         _WEB_ROOT . '/users',
         [UserController::class, 'getAll']
-    )
-    ->post(
+    )->post(
         _WEB_ROOT . '/search',
         [UserController::class, 'searchUser']
+    )->get(
+        _WEB_ROOT . '/chat/{uniqueId}',
+        [ChatController::class, 'index']
+    )->post(
+        _WEB_ROOT . '/chat/insert',
+        [ChatController::class, 'insert']
+    )->post(
+        _WEB_ROOT . '/chat/getAll',
+        [ChatController::class, 'getAll']
     );
 
 $router

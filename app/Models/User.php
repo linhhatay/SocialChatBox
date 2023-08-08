@@ -52,6 +52,14 @@ class User extends Model
         return false;
     }
 
+    public function get($uniqueId)
+    {
+        $stmt = $this->query("SELECT * FROM users WHERE unique_id = ?", [$uniqueId]);
+        $users = $stmt->fetch();
+
+        return $users;
+    }
+
     public function getAll()
     {
         $stmt = $this->query("SELECT * FROM users ");

@@ -17,19 +17,11 @@ class HomeController
     // GET /photos/{photo}/comments
     public function index(): View
     {
-        // $session = Session::getInstance();
-        // if ($session->get('unique_id')) {
-        //     return $this->response->redirect(_WEB_ROOT);
-        // }
         return View::make('signup');
     }
 
     public function home(): View
     {
-        // $session = Session::getInstance();
-        // if ($session->get('unique_id')) {
-        //     return $this->response->redirect(_WEB_ROOT);
-        // }
         return View::make('index');
     }
 

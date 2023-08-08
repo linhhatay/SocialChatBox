@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\Request;
+use App\View;
 
 class UserController
 {
@@ -36,5 +37,11 @@ class UserController
         }
 
         return json_encode($users);
+    }
+
+    public function chat($uniqueId): View
+    {
+        $user = $this->userModel->get($uniqueId);
+        return View::make('chat', ['user' => $user]);
     }
 }

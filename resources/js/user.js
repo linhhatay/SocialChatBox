@@ -38,7 +38,7 @@ searchBar.onkeyup = () => {
         html = results
           .map(
             (user) => `
-       <a href="/">
+       <a href="/Chatbox/chat?user_id=${user.unique_id}">
          <div class="content">
            <img
              src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"
@@ -95,7 +95,7 @@ async function fetchUsers() {
       const html = users
         .map(
           (user) => `
-          <a href="/">
+          <a href="/Chatbox/chat/${user.unique_id}">
             <div class="content">
               <img
                 src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"

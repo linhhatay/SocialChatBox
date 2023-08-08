@@ -2,15 +2,15 @@
     <header>
         <div class="content">
             <?php
-            if (!$session->has('unique_id')) {
+            if (!$session->has('user')) {
                 header("Location: " . _WEB_ROOT . "/login");
                 exit();
             }
             ?>
             <img src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" alt="Avatar">
             <div class="details">
-                <span><?= $user['fname'] . ' ' . $user['lname'] ?></span>
-                <p><?= $user['status'] ?></p>
+                <span><?= $session->get('user')['fname'] . ' ' . $session->get('user')['lname'] ?></span>
+                <p><?= $session->get('user')['status'] ?></p>
             </div>
         </div>
         <a href="<?= _WEB_ROOT . '/logout' ?>" class="logout">Logout</a>
