@@ -67,7 +67,7 @@ setInterval(() => {
       console.error("An error occurred:", error);
     }
   })();
-}, 2000);
+}, 500);
 
 function scrollToBottom() {
   chatBox.scrollTop = chatBox.scrollHeight;

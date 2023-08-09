@@ -41,6 +41,7 @@ class ChatController
 
         $messages = $this->messageModel->getAll($incomingId, $outgoingId);
         $output = "";
+
         if (count($messages) > 0) {
             foreach ($messages as $message) {
                 if ($message['outgoing_msg_id'] === $outgoingId) {
@@ -61,6 +62,7 @@ class ChatController
         } else {
             $output .= '<div class="text">No messages are available. Once you send message they will appear here.</div>';
         }
+
         echo $output;
     }
 }

@@ -60,17 +60,17 @@ class User extends Model
         return $users;
     }
 
-    public function getAll()
+    public function getAll($uniqueId)
     {
-        $stmt = $this->query("SELECT * FROM users ");
+        $stmt = $this->query("SELECT * FROM users WHERE NOT unique_id = ?", [$uniqueId]);
         $users = $stmt->fetchAll();
 
         return $users;
     }
 
-    public function search(string $keyword)
+    public function search(string $keyword, $uniqueId)
     {
-        $stmt = $this->query("SELECT * FROM users WHERE fname LIKE '%$keyword%' OR lname LIKE '%$keyword%'");
+        $stmt = $this->query("SELECT * FROM users WHERE NOT unique_id = $uniqueId AND (fname LIKE '%$keyword%' OR lname LIKE '%$keyword%')");
         $result = $stmt->fetchAll();
         return $result;
     }
