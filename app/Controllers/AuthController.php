@@ -14,6 +14,7 @@ use App\View;
 
 class AuthController
 {
+    private $session;
 
     public function __construct(
         private User $userModel,
@@ -21,11 +22,15 @@ class AuthController
         private Response $response,
         private EmailService $emailService
     ) {
+        $this->session = Session::getInstance();
     }
 
     public function showSignup()
     {
-
+        if ($this->session->has('user')) {
+            header("Location: " . _WEB_ROOT . "/home");
+            exit();
+        }
         return View::make('signup');
     }
 
@@ -92,6 +97,10 @@ class AuthController
 
     public function showLogin()
     {
+        if ($this->session->has('user')) {
+            header("Location: " . _WEB_ROOT . "/home");
+            exit();
+        }
         return View::make('login');
     }
 

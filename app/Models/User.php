@@ -34,6 +34,15 @@ class User extends Model
             throw new \Exception('Địa chỉ email không xác định. Kiểm tra lại hoặc thử tên người dùng của bạn.');
         }
 
+        $status = 'Active now';
+
+        $stmt = $this->query("UPDATE users SET status = ? WHERE unique_id = ?", [$status, $user['unique_id']]);
+
+        if ($stmt) {
+            $stmt = $this->query("SELECT * FROM users WHERE email = ?", [$email]);
+            $user = $stmt->fetch();
+        }
+
         $session = Session::getInstance();
         $session->set('unique_id', $user['unique_id']);
         return $user;

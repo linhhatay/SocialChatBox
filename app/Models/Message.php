@@ -21,7 +21,7 @@ class Message extends Model
     {
         $stmt = $this->query(
             "SELECT * FROM messages 
-            LEFT JOIN users on users.unique_id = messages.incoming_msg_id
+            LEFT JOIN users on users.unique_id = messages.outgoing_msg_id
             WHERE (outgoing_msg_id = $outgoingId AND incoming_msg_id = $incomingId) 
             OR (outgoing_msg_id = $incomingId AND incoming_msg_id = $outgoingId) ORDER BY msg_id"
         );

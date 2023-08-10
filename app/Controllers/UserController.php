@@ -49,7 +49,7 @@ class UserController
             ($user['status'] === 'Offline now') ? $offline = 'offline' : $offline = '';
             $output .= '<a href="/Chatbox/chat/' . $user['unique_id'] . '">
                     <div class="content">
-                    <img src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" alt="">
+                    <img src="' . $user['img'] . '" alt="">
                     <div class="details">
                         <span>' . $user['fname'] . " " . $user['lname'] . '</span>
                         <p>' . $you . $msg . '</p>
@@ -92,7 +92,7 @@ class UserController
 
             $output .= '<a href="/Chatbox/chat/' . $user['unique_id'] . '">
                     <div class="content">
-                    <img src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" alt="">
+                    <img src="' . $user['img'] . '" alt="">
                     <div class="details">
                         <span>' . $user['fname'] . " " . $user['lname'] . '</span>
                         <p>' . $you . $msg . '</p>

@@ -10,18 +10,29 @@ use App\View;
 
 class HomeController
 {
+    private $session;
+
 
     public function __construct(private Response $response)
     {
+        $this->session = Session::getInstance();
     }
     // GET /photos/{photo}/comments
     public function index(): View
     {
+        if ($this->session->has('user')) {
+            header("Location: " . _WEB_ROOT . "/home");
+            exit();
+        }
         return View::make('signup');
     }
 
     public function home(): View
     {
+        if (!$this->session->has('user')) {
+            header("Location: " . _WEB_ROOT . "/login");
+            exit();
+        }
         return View::make('index');
     }
 
