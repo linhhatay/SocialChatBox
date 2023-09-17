@@ -32,6 +32,7 @@ body {
   font-weight: 600;
   padding-bottom: 10px;
   border-bottom: 1px solid #e6e6e6;
+  color: rgb(0, 132, 255);
 }
 .form form {
   margin: 20px 0;
@@ -83,7 +84,7 @@ body {
   border: none;
   color: #fff;
   font-size: 17px;
-  background: #333;
+  background: rgb(0, 132, 255);
   border-radius: 5px;
   cursor: pointer;
   margin-top: 13px;
@@ -109,7 +110,7 @@ body {
   text-align: left;
 }
 .form .link a {
-  color: #333;
+  color: rgb(0, 132, 255);
 }
 .form .link a:hover {
   text-decoration: underline;
@@ -149,7 +150,7 @@ body {
 }
 .users header .logout {
   display: block;
-  background: #333;
+  background: rgb(0, 132, 255);
   color: #fff;
   outline: none;
   border: none;
@@ -246,7 +247,7 @@ body {
   padding: 18px 30px;
 }
 .chat-area header .back-icon {
-  color: #333;
+  color: rgb(0, 132, 255);
   font-size: 18px;
 }
 .chat-area header img {
@@ -292,7 +293,7 @@ body {
   max-width: calc(100% - 130px);
 }
 .outgoing .details p {
-  background: #333;
+  background: rgb(0, 132, 255);
   color: #fff;
   border-radius: 18px 18px 0 18px;
 }
@@ -310,7 +311,7 @@ body {
   max-width: calc(100% - 130px);
 }
 .incoming .details p {
-  background: #fff;
+  background: #e4e6eb;
   color: #333;
   border-radius: 18px 18px 18px 0;
 }
@@ -333,7 +334,7 @@ body {
   width: 55px;
   border: none;
   outline: none;
-  background: #333;
+  background: rgb(0, 132, 255);
   font-size: 19px;
   cursor: pointer;
   opacity: 0.7;

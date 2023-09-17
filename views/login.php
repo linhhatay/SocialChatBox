@@ -20,7 +20,7 @@
             <input type="password" name="password" placeholder="Enter your password" required>
             <i class="fas fa-eye"></i>
         </div>
-        <div class="link forgot-password"><a href="#' ?>">Forgot password?</a></div>
+        <div class="link forgot-password"><a href="<?= _WEB_ROOT . '/show-forgot-password' ?>">Forgot password?</a></div>
 
         <div class="field button">
             <input type="submit" name="submit" value="Continue to Chat">

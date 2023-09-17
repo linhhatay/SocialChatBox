@@ -67,6 +67,21 @@ $router
     )->get(
         _WEB_ROOT . '/logout',
         [AuthController::class, 'logout']
+    )->get(
+        _WEB_ROOT . '/show-forgot-password',
+        [AuthController::class, 'showForgotPassword']
+    )->post(
+        _WEB_ROOT . '/forgot-password',
+        [AuthController::class, 'forgotPassword']
+    )->get(
+        _WEB_ROOT . '/forgot-password-success',
+        [AuthController::class, 'showForgotPasswordSuccess']
+    )->get(
+        _WEB_ROOT . '/reset-password/{token}',
+        [AuthController::class, 'showFormResetPassword']
+    )->post(
+        _WEB_ROOT . '/send-reset-password/{token}',
+        [AuthController::class, 'resetPassword']
     );
 
 // echo '<pre>';

@@ -83,4 +83,29 @@ class User extends Model
         $result = $stmt->fetchAll();
         return $result;
     }
+
+    public function getUserByEmail(string $email)
+    {
+        $stmt = $this->query("SELECT * FROM users WHERE email = ?", [$email]);
+        $result = $stmt->fetch();
+        return $result;
+    }
+
+    public function forgotPassword(string $resetToken, string $resetExpires, string $email)
+    {
+        $stmt = $this->query("UPDATE users SET password_reset_token = ?, password_reset_expires = ? WHERE email = ?", [$resetToken, $resetExpires, $email]);
+        return $stmt;
+    }
+
+    public function resetPassword(string $resetToken, string $password)
+    {
+        $stmt = $this->query("SELECT * FROM users WHERE password_reset_token = ?", [$resetToken]);
+        $user = $stmt->fetch();
+        if (!$user)  return 'Token not found';
+
+        if (strtotime($user['password_reset_expires']) <= time()) return 'Token has expired';
+
+        $stmt = $this->query("UPDATE users SET password = ?, password_reset_token = null, password_reset_expires = null WHERE email = ?", [$password, $user['email']]);
+        return true;
+    }
 }
