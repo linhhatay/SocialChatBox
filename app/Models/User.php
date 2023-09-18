@@ -108,4 +108,13 @@ class User extends Model
         $stmt = $this->query("UPDATE users SET password = ?, password_reset_token = null, password_reset_expires = null WHERE email = ?", [$password, $user['email']]);
         return true;
     }
+
+    public function getUserByMessage(string $outgoingId)
+    {
+        $stmt = $this->query("SELECT * FROM users 
+        LEFT JOIN messages ON users.unique_id = messages.outgoing_msg_id  
+        WHERE outgoing_msg_id = $outgoingId");
+        $user = $stmt->fetch();
+        return $user;
+    }
 }
