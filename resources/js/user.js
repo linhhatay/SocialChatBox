@@ -61,6 +61,25 @@ async function fetchUsers() {
 
 fetchUsers();
 
-// setInterval(() => {
-//   fetchUsers();
-// }, 500);
+conn.onmessage = function (e) {
+  const data = JSON.parse(e.data);
+  console.log(data);
+  const userId = data.uniqueId;
+  const status = data.userStatus;
+
+  if (usersList.childElementCount > 0) {
+    const userEntries = document.querySelectorAll(".user");
+
+    userEntries.forEach((userEntry) => {
+      const uniqueId = Number(userEntry.dataset.id);
+      if (uniqueId === userId) {
+        const statusDot = userEntry.querySelector(".status-dot");
+        if (status === "Active now") {
+          statusDot.classList.remove("offline");
+        } else {
+          statusDot.classList.add("offline");
+        }
+      }
+    });
+  }
+};

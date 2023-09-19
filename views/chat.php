@@ -1,11 +1,8 @@
 <section class="chat-area">
     <header>
-        <?php
-
-        ?>
         <a href="<?= _WEB_ROOT . '/home' ?>" class="back-icon"><i class="fas fa-arrow-left"></i></a>
         <img src="http://localhost/Chatbox/<?= $user['img'] ?>" alt="">
-        <div class="details">
+        <div class="details" data-id="<?= $user['unique_id'] ?>">
             <span><?= $user['fname'] . ' ' . $user['lname'] ?></span>
             <p><?= $user['status'] ?></p>
         </div>

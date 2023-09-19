@@ -47,7 +47,7 @@ class UserController
                 $you = "";
             }
             ($user['status'] === 'Offline now') ? $offline = 'offline' : $offline = '';
-            $output .= '<a href="/Chatbox/chat/' . $user['unique_id'] . '">
+            $output .= '<a href="/Chatbox/chat/' . $user['unique_id'] . '" data-id="' . $user['unique_id'] . '" class="user">
                     <div class="content">
                     <img src="' . $user['img'] . '" alt="">
                     <div class="details">

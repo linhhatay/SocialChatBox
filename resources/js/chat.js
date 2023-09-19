@@ -4,18 +4,33 @@ const form = document.querySelector(".typing-area"),
   sendBtn = form.querySelector("button"),
   chatBox = document.querySelector(".chat-box");
 
-var outgoingId = document.querySelector(".outgoing_id").value;
-var incomingId = document.querySelector(".incoming_id").value;
-var message = document.querySelector(".input-field").value;
+const detailsEl = document.querySelector(".details");
+const userStatus = document.querySelector(".details p");
 
-var conn = new WebSocket("ws://localhost:8080");
-conn.onopen = function (e) {
-  console.log("Connection established!");
-};
+const outgoingId = document.querySelector(".outgoing_id").value;
+const incomingId = document.querySelector(".incoming_id").value;
+const message = document.querySelector(".input-field").value;
+
+function scrollToBottom() {
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
 
 conn.onmessage = function (e) {
-  var data = JSON.parse(e.data);
+  const data = JSON.parse(e.data);
+  const userId = Number(detailsEl.dataset.id);
+  console.log("Chat page");
   console.log(data);
+  if (data.hasOwnProperty("userStatus")) {
+    const uniqueId = data.uniqueId;
+    const status = data.userStatus;
+
+    if (uniqueId === userId) {
+      userStatus.textContent = status;
+    }
+
+    return;
+  }
+
   var chatDiv = document.createElement("div");
   var detailsDiv = document.createElement("div");
   var pElement = document.createElement("p");
@@ -36,6 +51,7 @@ conn.onmessage = function (e) {
 
   chatDiv.appendChild(detailsDiv);
   chatBox.appendChild(chatDiv);
+  scrollToBottom();
 };
 
 form.onsubmit = (e) => {
@@ -104,31 +120,6 @@ chatBox.onmouseleave = () => {
   chatBox.classList.remove("active");
 };
 
-// setInterval(() => {
-//   (async () => {
-//     try {
-//       const formData = new FormData(form);
-
-//       const response = await fetch("http://localhost/Chatbox/chat/getAll", {
-//         method: "POST",
-//         body: formData,
-//       });
-
-//       if (response.ok) {
-//         const data = await response.text();
-
-//         chatBox.innerHTML = data;
-
-//         if (!chatBox.classList.contains("active")) {
-//           scrollToBottom();
-//         }
-//       }
-//     } catch (error) {
-//       console.error("An error occurred:", error);
-//     }
-//   })();
-// }, 500);
-
 async function getChatBox() {
   try {
     const formData = new FormData(form);
@@ -143,16 +134,14 @@ async function getChatBox() {
 
       chatBox.innerHTML = data;
 
-      if (!chatBox.classList.contains("active")) {
-        scrollToBottom();
-      }
+      // if (!chatBox.classList.contains("active")) {
+      //   scrollToBottom();
+      // }
+      scrollToBottom();
     }
   } catch (error) {
     console.error("An error occurred:", error);
   }
 }
-getChatBox();
 
-function scrollToBottom() {
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
+getChatBox();
